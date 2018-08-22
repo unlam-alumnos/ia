@@ -1,5 +1,2 @@
-grank-1.3.0/db/cassandra/commmitlog
-grank-1.3.0/db/cassandra/data
-grank-1.3.0/db/cassandra/saved_caches
-grank-1.3.0/db/redis
-grank-1.3.0/logs
+**/db
+**/logs
