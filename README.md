@@ -1,3 +1,20 @@
+## Quickstart
+
+```
+git clone https://github.com/unlam/ia.git
+cd ia/grakn-1.3.0
+./grakn server start
+./graql console -f ./examples/basic-genealogy.gql
+./graql console
+match $x isa person, has identifier $n; get;
+```
+
+* Graphic console: http://localhost:4567
+* Atom package: https://atom.io/packages/language-graql
+* More info @ http://dev.grakn.ai/docs/get-started/quickstart-tutorial#the-graql-shell
+
+---
+
 ![GRAKN.AI](https://grakn.ai/assets/img/Grakn%20logo%20-%20transparent.png)
 
 ---
