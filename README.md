@@ -1,12 +1,14 @@
 ## Quickstart
 
 ```
+brew install grakn
 git clone https://github.com/unlam/ia.git
-cd ia/grakn-1.3.0
-./grakn server start
-./graql console -f ./examples/basic-genealogy.gql
-./graql console
+cd ia
+grakn server start
+graql console -f ./examples/basic-genealogy.gql
+graql console
 match $x isa person, has identifier $n; get;
+grakn server stop
 ```
 
 * Graphic console: http://localhost:4567
