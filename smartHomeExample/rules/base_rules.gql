@@ -1,0 +1,15 @@
+define 
+
+availableCommandsForDeviceRule sub rule
+when {
+ (targetDevice:$device,targetService:$service) isa offers;
+ (targetService:$service,targetFunction:$function) isa represents;
+ (targetFunction:$function,availableCommand:$command) isa hasCommand;
+}
+then {
+ (targetDevice:$device,availableCommand:$command) isa executes;
+};
+
+# match (targetDevice: $d, availableCommand: $c) isa executes; $d has name $n; $c has description $des; order by $des; get;
+
+# Si queremos hacer un or tenemos que separar las reglas e  n varias.

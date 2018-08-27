@@ -1,0 +1,61 @@
+define                         # carga el esquema en el sistema
+
+# Concepts 
+
+device sub entity is-abstract  # entidad
+plays targetDevice             # rol
+has name;                      # atributo
+
+smartTV  sub device;           # clase heredada
+
+service sub entity
+plays targetService
+has serviceName;
+
+function sub entity is-abstract
+plays targetFunction
+has functionName;
+
+actuatingFunction sub function;
+sensingFunction   sub function;
+
+command sub entity
+plays availableCommand
+has description;
+
+#Attributes
+
+description sub attribute
+datatype string;
+
+serviceName sub attribute
+datatype string;
+
+functionName sub attribute
+datatype string;
+
+name sub attribute
+datatype string;
+
+#Relationships
+
+targetDevice          sub role;
+targetService         sub role;
+targetFunction        sub role;
+availableCommand      sub role;
+
+offers sub relationship
+relates targetDevice
+relates targetService;
+
+represents sub relationship
+relates targetService
+relates targetFunction;
+
+hasCommand sub relationship
+relates targetFunction
+relates availableCommand;
+
+executes sub relationship
+relates targetDevice
+relates availableCommand;

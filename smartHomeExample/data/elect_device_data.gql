@@ -1,0 +1,81 @@
+#Base data
+#Smart TV data
+insert 
+
+$tv isa smartTV has name "MySmartTV";
+
+#Smart TV service data
+$electricManagementService isa service has serviceName "mySmartTVElectricManagementService";
+
+
+(targetDevice:$tv,targetService:$electricManagementService) isa offers;
+
+#Smart TV service functions data
+$turnOn            isa actuatingFunction has functionName "turnOn"  ;
+$turnOff           isa actuatingFunction has functionName "turnOff" ;
+$turnOnCommand     isa command  has description "turnOnCommand"  ;
+$turnOffCommand    isa command  has description "turnOffCommand" ;
+
+
+#Smart TV electric Management Service functions & command association data
+
+(targetService: $electricManagementService, targetFunction: $turnOn) isa represents;
+(targetService: $electricManagementService, targetFunction: $turnOff) isa represents;
+(targetFunction: $turnOn, availableCommand: $turnOnCommand) isa hasCommand;
+(targetFunction: $turnOff, availableCommand: $turnOffCommand) isa hasCommand;
+
+
+
+
+#Smart TV Volume Control service functions data
+
+$volumeControl isa service has serviceName "mySmartVolumeControlService";
+
+$decreaseVolume isa actuatingFunction has functionName "decreaseVolume";
+$increaseVolume isa actuatingFunction has functionName "increaseVolume";
+$sensingAmbientNoise isa sensingFunction   has functionName "sensingAmbientNoise";
+
+$decreaseVolumeCommand isa command has description "decreaseVolumeCommand";
+$increaseVolumeCommand isa command has description "increaseVolumeCommand";
+
+
+(targetDevice:$tv,targetService:$volumeControl) isa offers;
+
+(targetService: $volumeControl, targetFunction: $increaseVolume) isa represents;
+(targetService: $volumeControl, targetFunction: $decreaseVolume) isa represents;
+(targetService: $volumeControl, targetFunction: $sensingAmbientNoise) isa represents;
+
+#Smart TV Volume Control service functions command associations data
+
+(targetFunction: $increaseVolume, availableCommand: $increaseVolumeCommand) isa hasCommand;
+(targetFunction: $decreaseVolume, availableCommand: $decreaseVolumeCommand) isa hasCommand;
+
+
+#Smart TV show TV Channel Service functions data
+
+$showTVChannel isa service has serviceName "mySmartTvShowTVChannelService";
+
+$changeChannel  isa actuatingFunction has functionName "changeChannel";
+$showSubtitles  isa actuatingFunction has functionName "showSubtitles";
+$hideSubtitles  isa actuatingFunction has functionName "hideSubtitles";
+
+$sensingContentPreferences isa sensingFunction has functionName "sensingContentPreferences";
+
+
+$changeChannelCommand  isa command  has description "changeChannelCommand";
+$showSubtitlesCommand  isa command  has description "showSubtitlesCommand";
+$hideSubtitlesCommand  isa command  has description "hideSubtitlesCommand";
+
+(targetDevice:$tv,targetService:$showTVChannel) isa offers;
+(targetService: $showTVChannel, targetFunction: $changeChannel) isa represents;
+(targetService: $showTVChannel, targetFunction: $showSubtitles) isa represents;
+(targetService: $showTVChannel, targetFunction: $hideSubtitles) isa represents;
+(targetService: $showTVChannel, targetFunction: $sensingContentPreferences) isa represents;
+
+
+#Smart TV show TV Channel Service functions Command associations data
+(targetFunction: $changeChannel, availableCommand: $changeChannelCommand) isa hasCommand;
+(targetFunction: $showSubtitles, availableCommand: $showSubtitlesCommand) isa hasCommand;
+(targetFunction: $hideSubtitles, availableCommand: $hideSubtitlesCommand) isa hasCommand;
+
+
