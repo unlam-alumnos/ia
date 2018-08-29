@@ -1,0 +1,28 @@
+define
+
+# Concepts 
+
+person sub entity
+plays targetPerson
+has name;         
+
+#Attributes
+
+name sub attribute
+datatype string;
+
+#Relationships
+
+targetPerson sub role;
+
+parent sub relationship
+relates targetPerson
+relates targetPerson;
+
+spouse sub relationship
+relates targetPerson
+relates targetPerson;
+
+brother sub relationship
+relates targetPerson
+relates targetPerson;

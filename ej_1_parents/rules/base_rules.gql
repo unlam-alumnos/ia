@@ -1,0 +1,15 @@
+define 
+
+brotherhoodRule sub rule
+when {
+ (targetPerson:$f, targetPerson:$c1) isa parent;
+ (targetPerson:$f, targetPerson:$c2) isa parent;
+ (targetPerson:$m, targetPerson:$c1) isa parent;
+ (targetPerson:$m, targetPerson:$c2) isa parent;
+ (targetPerson:$f, targetPerson:$m) isa spouse;
+}
+then {
+ (targetPerson:$c1, targetPerson:$c2) isa brother;
+};
+
+# match (targetPerson: $p1, targetPerson: $p2) isa brother; $p1 has name $n1; $p2 has name $n2; $n1 != $n2 ; get $n1, $n2;

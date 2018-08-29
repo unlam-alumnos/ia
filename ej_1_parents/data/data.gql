@@ -1,0 +1,32 @@
+# Base data
+
+insert 
+
+#         Roberto + Celeste
+#            /          \
+# Pepe + Daniela      Hernan + María
+#     /                       \
+#  Santino                  Belen
+
+$roberto isa person has name "Roberto";
+$celeste isa person has name "Celeste";
+$pepe isa person has name "Pepe";
+$daniela isa person has name "Daniela";
+$hernan isa person has name "Hernan";
+$maria isa person has name "Maria";
+$santino isa person has name "Santino";
+$belen isa person has name "Belen";
+
+(targetPerson:$roberto, targetPerson:$celeste) isa spouse;
+(targetPerson:$roberto, targetPerson:$daniela) isa parent;
+(targetPerson:$celeste, targetPerson:$daniela) isa parent;
+(targetPerson:$roberto, targetPerson:$hernan) isa parent;
+(targetPerson:$celeste, targetPerson:$hernan) isa parent;
+
+(targetPerson:$pepe, targetPerson:$daniela) isa spouse;
+(targetPerson:$pepe, targetPerson:$santino) isa parent;
+(targetPerson:$daniela, targetPerson:$santino) isa parent;
+
+(targetPerson:$hernan, targetPerson:$maria) isa spouse;
+(targetPerson:$hernan, targetPerson:$belen) isa parent;
+(targetPerson:$maria, targetPerson:$belen) isa parent;
