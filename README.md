@@ -1,12 +1,11 @@
 ## Quickstart
 
 ```
-brew install grakn
 git clone https://github.com/unlam/ia.git
-cd ia
+cd ia/smartHomeExample
 grakn server start
-graql console -f ./examples/basic-genealogy.gql
-graql console
+./loadOnt.sh ejemplo
+graql console -k  ejemplo
 match $x isa person, has identifier $n; get;
 grakn server stop
 ```
