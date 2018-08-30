@@ -6,7 +6,7 @@ cd ia/smartHomeExample
 grakn server start
 ./loadOnt.sh ejemplo
 graql console -k  ejemplo
-match $x isa person, has identifier $n; get;
+match $x isa smartTV, has name $n; get;
 grakn server stop
 ```
 
