@@ -1,0 +1,12 @@
+# Base data
+
+insert 
+
+$lucia isa person has name "Lucia" has age 30 has eyes "marron" has hair "rubio";
+$ana isa person has name "Ana" has age 26 has eyes "celeste" has hair "rubio";
+
+$fisico isa profession has kind "Fisica";
+$matematico isa profession has kind "Matematica";
+
+(targetPerson:$lucia, targetProfession:$fisico) isa exercises;
+(targetPerson:$ana, targetProfession:$matematico) isa exercises;

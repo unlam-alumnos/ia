@@ -1,0 +1,32 @@
+define
+
+# Concepts 
+
+person sub entity
+plays targetPerson
+has name
+has age
+has eyes
+has hair;
+
+profession sub entity
+plays targetProfession
+has kind;        
+
+# Attributes
+
+name sub attribute datatype string;
+age sub attribute datatype long;
+eyes sub attribute datatype string;
+hair sub attribute datatype string;
+
+kind  sub attribute datatype string;
+
+# Relationships
+
+targetPerson sub role;
+targetProfession sub role;
+
+exercises sub relationship
+relates targetPerson
+relates targetProfession;
