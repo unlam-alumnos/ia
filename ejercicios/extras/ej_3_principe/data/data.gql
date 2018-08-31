@@ -1,0 +1,26 @@
+# Base data
+
+insert 
+
+$carlomagno isa king has name "Carlomagno" has age 70 has war_score 90;
+$arthur isa prince has name "Arthur" has age 35 has war_score 85;
+$john isa soldier has name "John" has age 30 has war_score 55;
+$robert isa soldier has name "Robert" has age 32 has war_score 50;
+$lucy isa civilian has name "Lucy" has age 20 has war_score 20;
+
+$frank_army isa army has name "Frank Army" has victories 2 has defeats 0;
+
+# Everyone obeys the king!
+(targetPerson:$arthur, targetPerson:$carlomagno) isa obey;
+(targetPerson:$john, targetPerson:$carlomagno) isa obey;
+(targetPerson:$robert, targetPerson:$carlomagno) isa obey;
+(targetPerson:$lucy, targetPerson:$carlomagno) isa obey;
+
+# Everyone but the king obeys the prince
+(targetPerson:$john, targetPerson:$arthur) isa obey;
+(targetPerson:$robert, targetPerson:$arthur) isa obey;
+(targetPerson:$lucy, targetPerson:$arthur) isa obey;
+
+# Prince and soldiers fight in the army
+(targetPerson:$john, targetArmy:$frank_army) isa fight;
+(targetPerson:$robert, targetArmy:$frank_army) isa fight;

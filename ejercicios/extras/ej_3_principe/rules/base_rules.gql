@@ -1,0 +1,12 @@
+define 
+
+leadershipRule sub rule
+when {
+ (targetPerson:$p, targetArmy:$a) isa fight;
+ # $p has war_score $w; aggregate max $w;
+}
+then {
+ (targetPerson:$p, targetArmy:$a) isa lead;
+};
+
+# match (targetPerson: $x, targetArmy: $r) isa lead; $x has name $n, has war_score $w; get $n, $w;

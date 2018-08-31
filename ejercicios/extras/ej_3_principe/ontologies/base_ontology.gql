@@ -1,0 +1,48 @@
+define
+
+# Concepts 
+
+person sub entity is-abstract
+plays targetPerson
+has name
+has age
+has war_score;
+
+king sub person;
+prince sub person;
+soldier sub person;
+civilian sub person;
+
+army sub entity
+plays targetArmy
+has name
+has victories
+has defeats;        
+
+# Attributes
+
+name sub attribute datatype string;
+age sub attribute datatype long;
+war_score sub attribute datatype long;
+
+victories sub attribute datatype long;
+defeats sub attribute datatype long;
+
+# Roles
+
+targetPerson sub role;
+targetArmy sub role;
+
+# Relationships
+
+obey sub relationship
+relates targetPerson
+relates targetPerson;
+
+lead sub relationship
+relates targetPerson
+relates targetArmy;
+
+fight sub relationship
+relates targetPerson
+relates targetArmy;
