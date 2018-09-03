@@ -2,25 +2,76 @@
 
 insert 
 
-$carlomagno isa king has name "Carlomagno" has age 70 has war_score 90;
-$arthur isa prince has name "Arthur" has age 35 has war_score 85;
-$john isa soldier has name "John" has age 30 has war_score 55;
-$robert isa soldier has name "Robert" has age 32 has war_score 50;
-$lucy isa civilian has name "Lucy" has age 20 has war_score 20;
+# People
+$juan isa person has _id 1 has name "Juan";
+$lucas isa person has _id 2 has name "Lucas";
+$romina isa person has _id 3 has name "Romina";
 
-$frank_army isa army has name "Frank Army" has victories 2 has defeats 0;
+# Cities
+$newyork isa city has _id 1 has name "New York";
+$buenosaires isa city has _id 2 has name "Buenos Aires";
+$london isa city has _id 3 has name "London";
 
-# Everyone obeys the king!
-(targetPerson:$arthur, targetPerson:$carlomagno) isa obey;
-(targetPerson:$john, targetPerson:$carlomagno) isa obey;
-(targetPerson:$robert, targetPerson:$carlomagno) isa obey;
-(targetPerson:$lucy, targetPerson:$carlomagno) isa obey;
+# Services
+$transport isa service has _id 1 has name "Transporte";
+$education isa service has _id 2 has name "Educación";
+$entertaiment isa service has _id 3 has name "Entretenimiento";
+$health_care isa service has _id 4 has name "Cuidado de la Salud";
 
-# Everyone but the king obeys the prince
-(targetPerson:$john, targetPerson:$arthur) isa obey;
-(targetPerson:$robert, targetPerson:$arthur) isa obey;
-(targetPerson:$lucy, targetPerson:$arthur) isa obey;
+# Places
+$university isa place has _id 1 has name "Universidad";
+$cinema isa place has _id 2 has name "Cine";
+$soccer_field isa place has _id 3 has name "Estadio de Futbol";
+$hospital isa place has _id 4 has name "Hospital";
 
-# Prince and soldiers fight in the army
-(targetPerson:$john, targetArmy:$frank_army) isa fight;
-(targetPerson:$robert, targetArmy:$frank_army) isa fight;
+# Activities
+$study isa activity has _id 1 has name "Estudiar";
+$watch_movie isa activity has _id 2 has name "Mirar una película";
+$play_soccer isa activity has _id 3 has name "Jugar al fútbol";
+$watch_soccer_game isa activity has _id 3 has name "Mirar partido de fútbol";
+$health_check isa activity has _id 4 has name "Realizar chequeo médico";
+
+
+# People living in...
+(targetPerson:$juan, targetCity:$newyork) isa lives;
+(targetPerson:$lucas, targetCity:$buenosaires) isa lives;
+(targetPerson:$romina, targetCity:$london) isa lives;
+
+# People doing...
+(targetPerson:$juan, targetActivity:$study) isa person_does;
+(targetPerson:$lucas, targetActivity:$study) isa person_does;
+(targetPerson:$romina, targetActivity:$study) isa person_does;
+(targetPerson:$juan, targetActivity:$watch_soccer_game) isa person_does;
+(targetPerson:$lucas, targetActivity:$watch_soccer_game) isa person_does;
+(targetPerson:$romina, targetActivity:$watch_movie) isa person_does;
+(targetPerson:$romina, targetActivity:$health_check) isa person_does;
+
+# Cities offer...
+(targetCity:$newyork, targetService:$transport) isa city_offers;
+(targetCity:$newyork, targetService:$education) isa city_offers;
+(targetCity:$newyork, targetService:$entertaiment) isa city_offers;
+(targetCity:$newyork, targetService:$health_care) isa city_offers;
+(targetCity:$buenosaires, targetService:$transport) isa city_offers;
+(targetCity:$buenosaires, targetService:$education) isa city_offers;
+(targetCity:$buenosaires, targetService:$entertaiment) isa city_offers;
+(targetCity:$buenosaires, targetService:$health_care) isa city_offers;
+(targetCity:$london, targetService:$transport) isa city_offers;
+(targetCity:$london, targetService:$education) isa city_offers;
+(targetCity:$london, targetService:$entertaiment) isa city_offers;
+(targetCity:$london, targetService:$health_care) isa city_offers;
+
+# Places offer...
+(targetPlace:$university, targetService:$education) isa place_offers;
+(targetPlace:$university, targetService:$entertaiment) isa place_offers;
+(targetPlace:$cinema, targetService:$entertaiment) isa place_offers;
+(targetPlace:$soccer_field, targetService:$education) isa place_offers;
+(targetPlace:$soccer_field, targetService:$entertaiment) isa place_offers;
+(targetPlace:$hospital, targetService:$health_care) isa place_offers;
+
+# Places do...
+(targetPlace:$university, targetActivity:$study) isa place_does;
+(targetPlace:$university, targetActivity:$play_soccer) isa place_does;
+(targetPlace:$cinema, targetActivity:$watch_movie) isa place_does;
+(targetPlace:$soccer_field, targetActivity:$play_soccer) isa place_does;
+(targetPlace:$soccer_field, targetActivity:$watch_soccer_game) isa place_does;
+(targetPlace:$hospital, targetActivity:$health_check) isa place_does;

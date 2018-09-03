@@ -2,47 +2,62 @@ define
 
 # Concepts 
 
-person sub entity is-abstract
-plays targetPerson
-has name
-has age
-has war_score;
+abstract_entity sub entity is-abstract
+has _id
+has name;
 
-king sub person;
-prince sub person;
-soldier sub person;
-civilian sub person;
+person sub abstract_entity
+plays targetPerson;
 
-army sub entity
-plays targetArmy
-has name
-has victories
-has defeats;        
+city sub abstract_entity
+plays targetCity;
+
+service sub abstract_entity
+plays targetService;
+
+place sub abstract_entity
+plays targetPlace;
+
+activity sub abstract_entity
+plays targetActivity;
 
 # Attributes
 
+_id sub attribute datatype long;
 name sub attribute datatype string;
-age sub attribute datatype long;
-war_score sub attribute datatype long;
-
-victories sub attribute datatype long;
-defeats sub attribute datatype long;
 
 # Roles
 
 targetPerson sub role;
-targetArmy sub role;
+targetCity sub role;
+targetService sub role;
+targetPlace sub role;
+targetActivity sub role;
 
 # Relationships
 
-obey sub relationship
+person_does sub relationship
 relates targetPerson
-relates targetPerson;
+relates targetActivity;
 
-lead sub relationship
+lives sub relationship
 relates targetPerson
-relates targetArmy;
+relates targetCity;
 
-fight sub relationship
-relates targetPerson
-relates targetArmy;
+city_offers sub relationship
+relates targetCity
+relates targetService;
+
+place_offers sub relationship
+relates targetPlace
+relates targetService;
+
+place_does sub relationship
+relates targetPlace
+relates targetActivity;
+
+# Inferred relationships
+
+city_does sub relationship
+relates targetCity
+relates targetActivity;

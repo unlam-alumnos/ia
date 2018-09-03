@@ -1,12 +1,33 @@
 define 
 
-leadershipRule sub rule
+cityDoesRule sub rule
 when {
- (targetPerson:$p, targetArmy:$a) isa fight;
- # $p has war_score $w; aggregate max $w;
+ (targetCity:$c, targetService:$s) isa city_offers;
+ (targetPlace:$p, targetService:$s) isa place_offers;
+ (targetPlace:$p, targetActivity:$a) isa place_does;
 }
 then {
- (targetPerson:$p, targetArmy:$a) isa lead;
+ (targetCity:$c, targetActivity:$a) isa city_does;
 };
 
-# match (targetPerson: $x, targetArmy: $r) isa lead; $x has name $n, has war_score $w; get $n, $w;
+# Preguntas que debe contestar la ontología:
+# 1) ¿Qué servicios ofrece una ciudad X?
+# 2) ¿Qué actividades ofrece una ciudad X?
+# 3) ¿Qué actividades se pueden realizar en un lugar X?
+# 4) ¿Qué servicios ofrece un lugar X?
+
+# 1)
+# match (targetCity: $c, targetService: $s) isa city_offers; $c has name $cn; $s has name $sn; get $cn, $sn;
+# match (targetCity: $c, targetService: $s) isa city_offers; $c has name "Buenos Aires"; $s has name $sn; get $sn;
+
+# 2)
+# match (targetCity: $c, targetActivity: $s) isa city_does; $c has name $cn; $s has name $sn; get $cn, $sn;
+# match (targetCity: $c, targetActivity: $s) isa city_does; $c has name "Buenos Aires"; $s has name $sn; get $sn;
+
+# 3)
+# match (targetPlace: $c, targetActivity: $s) isa place_does; $c has name $cn; $s has name $sn; get $cn, $sn;
+# match (targetPlace: $c, targetActivity: $s) isa place_does; $c has name "Universidad"; $s has name $sn; get $sn;
+
+# 4)
+# match (targetPlace: $c, targetService: $s) isa place_offers; $c has name $cn; $s has name $sn; get $cn, $sn;
+# match (targetPlace: $c, targetService: $s) isa place_offers; $c has name "Universidad"; $s has name $sn; get $sn;
