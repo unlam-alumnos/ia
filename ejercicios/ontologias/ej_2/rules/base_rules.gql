@@ -1,0 +1,67 @@
+define 
+
+# Utilizar reglas para clasificar niveles de riesgos. Los riesgos que tengan probabilidad de
+# ocurrencia menores a 0.3 inclusive son clasificados como bajo, riesgos que tenga una
+# probabilidad entre 0.3 y 0.6 inclusive son clasificados como medio y riesgos con
+# probabilidad mayor a 0.6 son clasificados como altos
+
+lowRiskRule sub rule
+when {
+ (targetCity:$c, targetRisk: $r) isa city_risk has ocurrence_probability <= 0.3;
+ (targetRisk:$r, targetPreventiveActionPlan:$pp) isa prevention;
+ (targetRisk:$r, targetContingencyPlan:$cp) isa contingency;
+}
+then {
+ (targetRisk:$r, targetPreventiveActionPlan:$pp, targetContingencyPlan: $cp) isa low_risk;
+};
+
+mediumRiskRule sub rule
+when {
+ (targetCity:$c, targetRisk: $r) isa city_risk has ocurrence_probability > 0.3;
+ (targetCity:$c, targetRisk: $r) isa city_risk has ocurrence_probability <= 0.6;
+ (targetRisk:$r, targetPreventiveActionPlan:$pp) isa prevention;
+ (targetRisk:$r, targetContingencyPlan:$cp) isa contingency;
+}
+then {
+ (targetRisk:$r, targetPreventiveActionPlan:$pp, targetContingencyPlan: $cp) isa medium_risk;
+};
+
+highRiskRule sub rule
+when {
+ (targetCity:$c, targetRisk: $r) isa city_risk has ocurrence_probability > 0.6;
+ (targetRisk:$r, targetPreventiveActionPlan:$pp) isa prevention;
+ (targetRisk:$r, targetContingencyPlan:$cp) isa contingency;
+}
+then {
+ (targetRisk:$r, targetPreventiveActionPlan:$pp, targetContingencyPlan: $cp) isa high_risk;
+};
+
+cityHighRiskRule sub rule
+when {
+ (targetCity:$c, targetRisk: $r) isa city_risk has ocurrence_probability > 0.6;
+ (targetRisk:$r, targetPreventiveActionPlan:$pp) isa prevention;
+ (targetRisk:$r, targetContingencyPlan:$cp) isa contingency;
+}
+then {
+ (targetCity:$c, targetRisk:$r, targetPreventiveActionPlan:$pp, targetContingencyPlan: $cp) isa city_high_risk;
+};
+
+# Preguntas que debe contestar la ontología:
+# 1) ¿Qué riesgos pueden presentarse en una ciudad X?
+# 2) ¿Qué riesgos de nivel alto pueden presentarse en una ciudad X?
+# 3) ¿Qué cursos de acción preventivos hay para riesgos altos?
+# 4) ¿Qué planes de contingencia hay para riesgos altos?
+
+# 1)
+# match (targetCity: $c, targetRisk: $s) isa city_risk; $c has name $cn; $s has name $sn; get $cn, $sn;
+# match (targetCity: $c, targetRisk: $s) isa city_risk; $c has name "Buenos Aires"; $s has name $sn; get $sn;
+
+# 2)
+# match (targetCity: $c, targetRisk: $s, targetPreventiveActionPlan: $pp, targetContingencyPlan: $cp) isa city_high_risk; $c has name $cn; $s has name $sn; get $cn, $sn;
+# match (targetCity: $c, targetRisk: $s, targetPreventiveActionPlan: $pp, targetContingencyPlan: $cp) isa city_high_risk; $c has name "Buenos Aires"; $s has name $sn; get $sn;
+
+# 3)
+# match (targetRisk: $c, targetPreventiveActionPlan: $pp, targetContingencyPlan: $cp) isa high_risk; $c has name $cn; $pp has name $ppn; $cp has name $cpn; get $cn, $ppn;
+
+# 4)
+# match (targetRisk: $c, targetPreventiveActionPlan: $pp, targetContingencyPlan: $cp) isa high_risk; $c has name $cn; $pp has name $ppn; $cp has name $cpn; get $cn, $cpn;
