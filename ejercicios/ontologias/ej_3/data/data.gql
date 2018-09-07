@@ -1,0 +1,33 @@
+# Base data
+
+insert 
+
+# People
+$juan isa person has _id 1 has name "Juan" has sex "M" has age 27 has 178 has 82;
+$lucas isa person has _id 2 has name "Lucas" has sex "M" has age 22 has 168 has 69;
+$romina isa person has _id 3 has name "Romina" has sex "F" has age 27 has 168 has 62;
+
+# Moderate Activities
+$walking isa activity has _id 1 has name "Caminar" has intensity "Moderada";
+$jogging isa activity has _id 2 has name "Trotar" has intensity "Moderada";
+$dancing isa activity has _id 3 has name "Dance" has intensity "Moderada";
+$yoga isa activity has _id 4 has name "Yoga" has intensity "Moderada";
+$skating isa activity has _id 5 has name "Patinaje" has intensity "Moderada";
+$slow_biking isa activity has _id 6 has name "Andar en bicicleta tranquilamente" has intensity "Moderada";
+
+# Intensive Activities
+$running isa activity has _id 7 has name "Correr" has intensity "Intensiva";
+$fast_biking isa activity has _id 8 has name "Andar en bicicleta rápido" has intensity "Intensiva";
+$swimming isa activity has _id 9 has name "Natación a nivel competitivo" has intensity "Intensiva";
+$soccer isa activity has _id 10 has name "Fútbol competitivo" has intensity "Intensiva";
+$volley isa activity has _id 11 has name "Voleibol competitivo" has intensity "Intensiva";
+$hockey isa activity has _id 12 has name "Hockey competitivo" has intensity "Intensiva";
+$basketball isa activity has _id 13 has name "Basquetbol competitivo" has intensity "Intensiva";
+$aerobics isa activity has _id 14 has name "Aerobics" has intensity "Intensiva";
+
+# Recreational Activities
+$take_a_walk isa activity has _id 15 has name "Paseos" has intensity "Recreacional";
+$tourism isa activity has _id 16 has name "Turismo" has intensity "Recreacional";
+$cultural_visits isa activity has _id 17 has name "Visitas culturales" has intensity "Recreacional";
+$old_people_swimming isa activity has _id 18 has name "Natación tercera edad" has intensity "Recreacional";
+$excursions isa activity has _id 19 has name "Excursiones" has intensity "Recreacional";

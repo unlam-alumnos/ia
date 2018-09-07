@@ -1,0 +1,48 @@
+define
+
+# Concepts 
+
+abstract_entity sub entity is-abstract
+has _id
+has name;
+
+person sub abstract_entity
+has sex
+has age
+has height
+has weight
+plays targetPerson;
+
+group sub abstract_entity
+plays targetGroup;
+
+activity sub abstract_entity
+has intensity
+plays targetActivity;
+
+# Attributes
+
+_id sub attribute datatype long;
+name sub attribute datatype string;
+sex sub attribute datatype string;
+age sub attribute datatype long;
+height sub attribute datatype double;
+weight sub attribute datatype double;
+
+intensity sub attribute datatype string;
+
+# Roles
+
+targetPerson sub role;
+targetGroup sub role;
+targetActivity sub role;
+
+# Inferred relationships
+
+group_does sub relationship
+relates targetPerson
+relates targetActivity;
+
+person_does sub relationship
+relates targetPerson
+relates targetActivity;
