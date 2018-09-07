@@ -1,0 +1,2 @@
+Según los profesores este ejercicio no se resolvía con Grakn ya que las redes semánticas
+no tienen una estructura definida.
