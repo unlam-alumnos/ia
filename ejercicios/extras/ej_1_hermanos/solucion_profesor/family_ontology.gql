@@ -1,0 +1,69 @@
+define
+
+#Class
+
+person sub entity
+plays child
+plays uncle
+plays sibling1
+plays sibling2
+plays cousin1
+plays cousin2
+plays ascendant
+plays father
+plays mother
+plays targetPerson
+has name
+has gender;
+
+
+#Attributes
+
+name sub attribute
+datatype string;
+
+gender sub attribute
+datatype string;
+
+#Relationships
+
+ascendant sub role;
+child sub role;
+
+isAscendant sub relationship
+relates ascendant
+relates child;
+
+sibling1 sub role;
+sibling2 sub role;
+
+isSibling sub relationship
+relates sibling1
+relates sibling2;
+
+cousin1 sub role;
+cousin2 sub role;
+
+isCousin sub relationship
+relates cousin1
+relates cousin2;
+
+uncle sub role;
+targetPerson sub role;
+
+isUncle sub relationship
+relates uncle
+relates targetPerson; 
+
+father sub role;
+mother sub role;
+child  sub role;
+
+isFather sub relationship
+relates father
+relates child;
+
+isMother sub relationship
+relates mother
+relates child;
+

@@ -1,0 +1,58 @@
+
+insert $p isa person has name "roberto" has gender "male";
+insert $p isa person has name "celeste" has gender "female";
+
+insert $p isa person has name "pepe"    has gender "male";
+insert $p isa person has name "daniela" has gender "female";
+insert $p isa person has name "santino" has gender "male";
+
+insert $p isa person has name "hernan"  has gender "male";
+insert $p isa person has name "maria"   has gender "female";
+insert $p isa person has name "belen"   has gender "female";
+
+
+match 
+    $p1 isa person has name "celeste";
+    $p2 isa person has name "daniela";
+    insert (ascendant:$p1,child:$p2) isa isAscendant;
+
+match 
+    $p1 isa person has name "roberto";
+    $p2 isa person has name "daniela";
+    insert (ascendant:$p1,child:$p2) isa isAscendant;
+
+match 
+    $p1 isa person has name "roberto";
+    $p2 isa person has name "hernan";
+    insert (ascendant:$p1,child:$p2) isa isAscendant;
+
+match 
+    $p1 isa person has name "celeste";
+    $p2 isa person has name "daniela";
+    insert (ascendant:$p1,child:$p2) isa isAscendant;
+
+match 
+    $p1 isa person has name "celeste";
+    $p2 isa person has name "hernan";
+    insert (ascendant:$p1,child:$p2) isa isAscendant;
+
+match 
+    $p1 isa person has name "pepe";
+    $p2 isa person has name "santino";
+    insert (ascendant:$p1,child:$p2) isa isAscendant;
+
+match 
+    $p1 isa person has name "daniela";
+    $p2 isa person has name "santino";
+    insert (ascendant:$p1,child:$p2) isa isAscendant;
+
+
+match 
+    $p1 isa person has name "hernan";
+    $p2 isa person has name "belen";
+    insert (ascendant:$p1,child:$p2) isa isAscendant;
+
+match 
+    $p1 isa person has name "maria";
+    $p2 isa person has name "belen";
+    insert (ascendant:$p1,child:$p2) isa isAscendant;
