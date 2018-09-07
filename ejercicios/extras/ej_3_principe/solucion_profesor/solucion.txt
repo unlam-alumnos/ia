@@ -1,0 +1,2 @@
+Según los profesores este ejercicio no se resolvía con Grakn. La idea era identificar conceptos, 
+atributos y reglas causales. Metodología IDEAL.
