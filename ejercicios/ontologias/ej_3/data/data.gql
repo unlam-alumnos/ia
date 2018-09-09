@@ -3,9 +3,14 @@
 insert 
 
 # People
-$juan isa person has _id 1 has name "Juan" has sex "M" has age 27 has 178 has 82;
-$lucas isa person has _id 2 has name "Lucas" has sex "M" has age 22 has 168 has 69;
-$romina isa person has _id 3 has name "Romina" has sex "F" has age 27 has 168 has 62;
+$juan isa person has _id 1 has name "Juan" has sex "M" has age 17 has height 178 has weight 82;
+$lucas isa person has _id 2 has name "Lucas" has sex "M" has age 22 has height 168 has weight 69;
+$romina isa person has _id 3 has name "Romina" has sex "F" has age 27 has height 168 has weight 62;
+
+# Groups
+$young isa group has _id 1 has name "Jóvenes";
+$adult isa group has _id 2 has name "Adultos";
+$old isa group has _id 3 has name "Tercera Edad";
 
 # Moderate Activities
 $walking isa activity has _id 1 has name "Caminar" has intensity "Moderada";

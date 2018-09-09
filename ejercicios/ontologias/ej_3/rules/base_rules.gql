@@ -1,33 +1,101 @@
 define 
 
-cityDoesRule sub rule
+belongsToYoungPeopleRule sub rule
 when {
- (targetCity:$c, targetService:$s) isa city_offers;
- (targetPlace:$p, targetService:$s) isa place_offers;
- (targetPlace:$p, targetActivity:$a) isa place_does;
+ $p isa person has age >= 5, has age <= 17;
+ $g isa group has name "Jóvenes";
 }
 then {
- (targetCity:$c, targetActivity:$a) isa city_does;
+ (targetPerson:$p, targetGroup:$g) isa belongs_to;
 };
 
-# Preguntas que debe contestar la ontología:
-# 1) ¿Qué servicios ofrece una ciudad X?
-# 2) ¿Qué actividades ofrece una ciudad X?
-# 3) ¿Qué actividades se pueden realizar en un lugar X?
-# 4) ¿Qué servicios ofrece un lugar X?
+belongsToAdultPeopleRule sub rule
+when {
+ $p isa person has age >= 18, has age <= 64;
+ $g isa group has name "Adultos";
+}
+then {
+ (targetPerson:$p, targetGroup:$g) isa belongs_to;
+};
+
+belongsToOldPeopleRule sub rule
+when {
+ $p isa person has age > 65;
+ $g isa group has name "Tercera Edad";
+}
+then {
+ (targetPerson:$p, targetGroup:$g) isa belongs_to;
+};
+
+youngGroupDoesModerateActivityRule sub rule
+when {
+ $g isa group has name "Jóvenes";
+ $a isa activity has intensity "Moderada";
+}
+then {
+ (targetGroup:$g, targetActivity:$a) isa group_does;
+};
+
+youngGroupDoesIntensiveActivityRule sub rule
+when {
+ $g isa group has name "Jóvenes";
+ $a isa activity has intensity "Intensiva";
+}
+then {
+ (targetGroup:$g, targetActivity:$a) isa group_does;
+};
+
+adultGroupDoesModerateActivityRule sub rule
+when {
+ $g isa group has name "Adultos";
+ $a isa activity has intensity "Moderada";
+}
+then {
+ (targetGroup:$g, targetActivity:$a) isa group_does;
+};
+
+oldGroupDoesRecreationalActivityRule sub rule
+when {
+ $g isa group has name "Tercera Edad";
+ $a isa activity has intensity "Recreacional";
+}
+then {
+ (targetGroup:$g, targetActivity:$a) isa group_does;
+};
+
+personDoesActivityRule sub rule
+when {
+ (targetPerson:$p, targetGroup:$g) isa belongs_to;
+ (targetGroup:$g, targetActivity:$a) isa group_does;
+}
+then {
+ (targetPerson:$p, targetActivity:$a) isa person_does;
+};
+
+# Obtener personas por grupo
+# match (targetPerson:$p, targetGroup:$g) isa belongs_to; $g has name "Jóvenes"; $p has name $n; get $n;
+# match (targetPerson:$p, targetGroup:$g) isa belongs_to; $g has name "Adultos"; $p has name $n; get $n;
+# match (targetPerson:$p, targetGroup:$g) isa belongs_to; $g has name "Tercera Edad"; $p has name $n; get $n;
+
+# Restricciones
+# • El grupo de jóvenes pueden hacer actividades moderada e intensiva.
+# • El grupo adultos pueden hacer actividades moderadas.
+# • El grupo adultos pueden hacer actividades recreacionales.
+
+# Preguntas que debe contestar:
+# 1) ¿Qué actividades puede realizar el grupo X?
+# 2) ¿Qué actividades puede realizar una persona X?
+# 3) ¿Qué grupo puede realizar una actividad X?
 
 # 1)
-# match (targetCity: $c, targetService: $s) isa city_offers; $c has name $cn; $s has name $sn; get $cn, $sn;
-# match (targetCity: $c, targetService: $s) isa city_offers; $c has name "Buenos Aires"; $s has name $sn; get $sn;
+# match (targetGroup:$g,targetActivity:$a) isa group_does; $g has name "Jóvenes"; $a has name $na; get $na;
+# match (targetGroup:$g,targetActivity:$a) isa group_does; $g has name "Adultos"; $a has name $na; get $na;
+# match (targetGroup:$g,targetActivity:$a) isa group_does; $g has name "Tercera Edad"; $a has name $na; get $na;
 
 # 2)
-# match (targetCity: $c, targetActivity: $s) isa city_does; $c has name $cn; $s has name $sn; get $cn, $sn;
-# match (targetCity: $c, targetActivity: $s) isa city_does; $c has name "Buenos Aires"; $s has name $sn; get $sn;
+# match (targetPerson:$p,targetActivity:$a) isa person_does; $p has name "Juan"; $a has name $na; get $na;
 
 # 3)
-# match (targetPlace: $c, targetActivity: $s) isa place_does; $c has name $cn; $s has name $sn; get $cn, $sn;
-# match (targetPlace: $c, targetActivity: $s) isa place_does; $c has name "Universidad"; $s has name $sn; get $sn;
-
-# 4)
-# match (targetPlace: $c, targetService: $s) isa place_offers; $c has name $cn; $s has name $sn; get $cn, $sn;
-# match (targetPlace: $c, targetService: $s) isa place_offers; $c has name "Universidad"; $s has name $sn; get $sn;
+# match (targetGroup:$g,targetActivity:$a) isa group_does; $g has name $ga; $a has name "Correr"; get $ga;
+# match (targetGroup:$g,targetActivity:$a) isa group_does; $g has name $ga; $a has name "Trotar"; get $ga;
+# match (targetGroup:$g,targetActivity:$a) isa group_does; $g has name $ga; $a has name "Turismo"; get $ga;

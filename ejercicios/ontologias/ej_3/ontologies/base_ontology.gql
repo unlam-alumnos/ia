@@ -39,8 +39,12 @@ targetActivity sub role;
 
 # Inferred relationships
 
-group_does sub relationship
+belongs_to sub relationship
 relates targetPerson
+relates targetGroup;
+
+group_does sub relationship
+relates targetGroup
 relates targetActivity;
 
 person_does sub relationship
