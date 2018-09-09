@@ -26,3 +26,7 @@ relates targetPerson;
 brother sub relationship
 relates targetPerson
 relates targetPerson;
+
+cousin sub relationship
+relates targetPerson
+relates targetPerson;

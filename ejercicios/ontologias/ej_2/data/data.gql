@@ -1,0 +1,52 @@
+# Base data
+
+insert 
+
+# Cities
+$newyork isa city has _id 1 has name "New York";
+$buenosaires isa city has _id 2 has name "Buenos Aires";
+$london isa city has _id 3 has name "London";
+
+# Risks
+$flooding isa risk has _id 1 has name "Inundacion";
+$fire isa risk has _id 2 has name "Incendio";
+$criminality isa risk has _id 3 has name "Delincuencia";
+$sudden_death isa risk has _id 4 has name "Muerte subita";
+
+# Preventive Action Plan
+$flooding_preventive_plan isa preventive_action_plan has _id 1 has name "Plan de accion preventiva para inundaciones";
+$fire_preventive_plan isa preventive_action_plan has _id 2 has name "Plan de accion preventiva para incendios";
+$criminality_preventive_plan isa preventive_action_plan has _id 3 has name "Plan de accion preventiva para delincuencia";
+$sudden_death_preventive_plan isa preventive_action_plan has _id 4 has name "Plan de accion preventiva para muerte subita";
+
+# Contingency Plan
+$flooding_contingency_plan isa contingency_plan has _id 1 has name "Plan de contingencia para inundaciones";
+$fire_contingency_plan isa contingency_plan has _id 2 has name "Plan de contingencia para incendios";
+$criminality_contingency_plan isa contingency_plan has _id 3 has name "Plan de contingencia para delincuencia";
+$sudden_death_contingency_plan isa contingency_plan has _id 4 has name "Plan de contingencia para muerte subita";
+
+# Cities at risk...
+(targetCity:$newyork, targetRisk:$flooding) isa city_risk has ocurrence_probability 0.6;
+(targetCity:$newyork, targetRisk:$fire) isa city_risk has ocurrence_probability 0.3;
+(targetCity:$newyork, targetRisk:$criminality) isa city_risk has ocurrence_probability 0.2;
+(targetCity:$newyork, targetRisk:$sudden_death) isa city_risk has ocurrence_probability 0.1;
+(targetCity:$buenosaires, targetRisk:$flooding) isa city_risk has ocurrence_probability 0.7;
+(targetCity:$buenosaires, targetRisk:$fire) isa city_risk has ocurrence_probability 0.7;
+(targetCity:$buenosaires, targetRisk:$criminality) isa city_risk has ocurrence_probability 0.8;
+(targetCity:$buenosaires, targetRisk:$sudden_death) isa city_risk has ocurrence_probability 0.2;
+(targetCity:$london, targetRisk:$flooding) isa city_risk has ocurrence_probability 0.1;
+(targetCity:$london, targetRisk:$fire) isa city_risk has ocurrence_probability 0;
+(targetCity:$london, targetRisk:$criminality) isa city_risk has ocurrence_probability 0.3;
+(targetCity:$london, targetRisk:$sudden_death) isa city_risk has ocurrence_probability 0.9;
+
+# Risks preventive action plan
+(targetRisk:$flooding, targetPreventiveActionPlan:$flooding_preventive_plan) isa prevention;
+(targetRisk:$fire, targetPreventiveActionPlan:$fire_preventive_plan) isa prevention;
+(targetRisk:$criminality, targetPreventiveActionPlan:$criminality_preventive_plan) isa prevention;
+(targetRisk:$sudden_death, targetPreventiveActionPlan:$sudden_death_preventive_plan) isa prevention;
+
+# Risks contingency plan
+(targetRisk:$flooding, targetContingencyPlan:$flooding_contingency_plan) isa contingency;
+(targetRisk:$fire, targetContingencyPlan:$fire_contingency_plan) isa contingency;
+(targetRisk:$criminality, targetContingencyPlan:$criminality_contingency_plan) isa contingency;
+(targetRisk:$sudden_death, targetContingencyPlan:$sudden_death_contingency_plan) isa contingency;

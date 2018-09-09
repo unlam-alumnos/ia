@@ -1,0 +1,62 @@
+define
+
+# Concepts 
+
+risk sub abstract_entity
+plays targetRisk
+has description;
+
+contingency_plan sub abstract_entity
+plays targetContingencyPlan;
+
+preventive_action_plan sub abstract_entity
+plays targetPreventiveActionPlan;
+
+# Attributes
+
+description sub attribute datatype string;
+ocurrence_probability sub attribute datatype double;
+
+# Roles
+
+targetRisk sub role;
+targetContingencyPlan sub role;
+targetPreventiveActionPlan sub role;
+
+# Relationships
+
+city_risk sub relationship
+has ocurrence_probability
+relates targetCity
+relates targetRisk;
+
+prevention sub relationship
+relates targetRisk
+relates targetPreventiveActionPlan;
+
+contingency sub relationship
+relates targetRisk
+relates targetContingencyPlan;
+
+# Inferred relationships
+
+low_risk sub relationship
+relates targetRisk
+relates targetPreventiveActionPlan
+relates targetContingencyPlan;
+
+medium_risk sub relationship
+relates targetRisk
+relates targetPreventiveActionPlan
+relates targetContingencyPlan;
+
+high_risk sub relationship
+relates targetRisk
+relates targetPreventiveActionPlan
+relates targetContingencyPlan;
+
+city_high_risk sub relationship
+relates targetCity
+relates targetRisk
+relates targetPreventiveActionPlan
+relates targetContingencyPlan;

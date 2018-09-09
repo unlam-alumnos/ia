@@ -12,4 +12,46 @@ then {
  (targetPerson:$c1, targetPerson:$c2) isa brother;
 };
 
+cousin1Rule sub rule
+when {
+ (targetPerson:$p1, targetPerson:$m1) isa spouse;
+ (targetPerson:$p1, targetPerson:$x) isa parent;
+ (targetPerson:$m1, targetPerson:$x) isa parent;
+ (targetPerson:$p2, targetPerson:$m2) isa spouse;
+ (targetPerson:$p2, targetPerson:$y) isa parent;
+ (targetPerson:$m2, targetPerson:$y) isa parent;
+ (targetPerson:$p1, targetPerson:$p2) isa brother;
+}
+then {
+ (targetPerson:$x, targetPerson:$y) isa cousin;
+};
+
+cousin2Rule sub rule
+when {
+ (targetPerson:$p1, targetPerson:$m1) isa spouse;
+ (targetPerson:$p1, targetPerson:$x) isa parent;
+ (targetPerson:$m1, targetPerson:$x) isa parent;
+ (targetPerson:$p2, targetPerson:$m2) isa spouse;
+ (targetPerson:$p2, targetPerson:$y) isa parent;
+ (targetPerson:$m2, targetPerson:$y) isa parent;
+ (targetPerson:$m1, targetPerson:$m2) isa brother;
+}
+then {
+ (targetPerson:$x, targetPerson:$y) isa cousin;
+};
+
+cousin3Rule sub rule
+when {
+ (targetPerson:$p1, targetPerson:$m1) isa spouse;
+ (targetPerson:$p1, targetPerson:$x) isa parent;
+ (targetPerson:$m1, targetPerson:$x) isa parent;
+ (targetPerson:$p2, targetPerson:$m2) isa spouse;
+ (targetPerson:$p2, targetPerson:$y) isa parent;
+ (targetPerson:$m2, targetPerson:$y) isa parent;
+ (targetPerson:$p1, targetPerson:$m2) isa brother;
+}
+then {
+ (targetPerson:$x, targetPerson:$y) isa cousin;
+};
+
 # match (targetPerson: $p1, targetPerson: $p2) isa brother; $p1 has name $n1; $p2 has name $n2; $n1 != $n2 ; get $n1, $n2;

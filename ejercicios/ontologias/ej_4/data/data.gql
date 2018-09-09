@@ -1,0 +1,25 @@
+# Base data
+
+insert 
+
+# People
+$juan isa person has _id 1 has name "Juan" has sex "M" has age 14 has title "Primario";
+$lucas isa person has _id 2 has name "Lucas" has sex "M" has age 22 has title "Secundario";
+$romina isa person has _id 3 has name "Romina" has sex "F" has age 27 has title "Universitario";
+$lorena isa person has _id 4 has name "Lorena" has sex "F" has age 27 has title "Secundario";
+
+# Groups
+$primario isa group has _id 1 has name "Principiante";
+$secundario isa group has _id 2 has name "Intermedio";
+$universitario isa group has _id 3 has name "Experto";
+
+# Difficulty
+$easy isa difficulty has _id 1 has name "Fácil";
+$medium isa difficulty has _id 2 has name "Medio";
+$hard isa difficulty has _id 3 has name "Difícil";
+
+# Puzzles
+$puzzle_1 isa puzzle has _id 1 has name "Perros" has parts 40;
+$puzzle_2 isa puzzle has _id 2 has name "Oceano" has parts 100;
+$puzzle_3 isa puzzle has _id 3 has name "Autos" has parts 350;
+$puzzle_4 isa puzzle has _id 4 has name "Retrato de persona" has parts 500;

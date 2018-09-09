@@ -1,0 +1,63 @@
+define
+
+# Concepts 
+
+abstract_entity sub entity is-abstract
+has _id
+has name;
+
+person sub abstract_entity
+plays targetPerson;
+
+city sub abstract_entity
+plays targetCity;
+
+service sub abstract_entity
+plays targetService;
+
+place sub abstract_entity
+plays targetPlace;
+
+activity sub abstract_entity
+plays targetActivity;
+
+# Attributes
+
+_id sub attribute datatype long;
+name sub attribute datatype string;
+
+# Roles
+
+targetPerson sub role;
+targetCity sub role;
+targetService sub role;
+targetPlace sub role;
+targetActivity sub role;
+
+# Relationships
+
+person_does sub relationship
+relates targetPerson
+relates targetActivity;
+
+lives sub relationship
+relates targetPerson
+relates targetCity;
+
+city_offers sub relationship
+relates targetCity
+relates targetService;
+
+place_offers sub relationship
+relates targetPlace
+relates targetService;
+
+place_does sub relationship
+relates targetPlace
+relates targetActivity;
+
+# Inferred relationships
+
+city_does sub relationship
+relates targetCity
+relates targetActivity;

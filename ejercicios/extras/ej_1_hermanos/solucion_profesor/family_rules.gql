@@ -1,0 +1,51 @@
+define
+
+isSiblingRule sub rule
+when {
+    (ascendant:$ascendant,child:$child1) isa isAscendant;
+    (ascendant:$ascendant,child:$child2) isa isAscendant;
+    $child1 != $child2;
+}
+then {
+    (sibling1:$child1,sibling2:$child2) isa isSibling;
+};
+
+
+isUncleRule sub rule
+when {
+    (ascendant:$ascendant,child:$child)              isa isAscendant;
+    (sibling1:$ascendant,sibling2:$ascendantSibling) isa isSibling;
+}
+then {
+    (uncle:$ascendantSibling,targetPerson:$child) isa isUncle;
+};
+
+isCousinRule sub rule 
+when {
+    (uncle:$uncle1,targetPerson:$child1) isa isUncle;
+    (uncle:$uncle2,targetPerson:$child2) isa isUncle;
+    (sibling1:$uncle1,sibling2:$uncle2) isa isSibling;
+    $child1 != $child2;
+}
+then {
+      (cousin1:$child1,cousin2:$child2)  isa isCousin;
+};
+
+
+isFatherRule sub rule
+when {
+    (ascendant:$ascendant,child:$child) isa isAscendant;
+    $ascendant isa person has gender "male";
+}
+then {
+    (father:$ascendant, child:$child) isa isFather;
+};
+
+isMotherRule sub rule
+when {
+    (ascendant:$ascendant,child:$child) isa isAscendant;
+    $ascendant isa person has gender "female";
+}
+then {
+    (mother:$ascendant, child:$child) isa isMother;
+}; 
