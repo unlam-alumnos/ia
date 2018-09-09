@@ -1,0 +1,146 @@
+define 
+
+belongsTobeginnerPeopleByAgeRule sub rule
+when {
+ $p isa person has age >= 5, has age <= 17;
+ $g isa group has name "Principiante";
+}
+then {
+ (targetPerson:$p, targetGroup:$g) isa belongs_to;
+};
+
+belongsTobeginnerPeopleByTitleRule sub rule
+when {
+ $p isa person has title "Primario";
+ $g isa group has name "Principiante";
+}
+then {
+ (targetPerson:$p, targetGroup:$g) isa belongs_to;
+};
+
+belongsToIntermediatePeopleByAgeRule sub rule
+when {
+ $p isa person has age >= 18, has age <= 22;
+ $g isa group has name "Intermedio";
+}
+then {
+ (targetPerson:$p, targetGroup:$g) isa belongs_to;
+};
+
+belongsToIntermediatePeopleByTitleRule sub rule
+when {
+ $p isa person has title "Secundario";
+ $g isa group has name "Intermedio";
+}
+then {
+ (targetPerson:$p, targetGroup:$g) isa belongs_to;
+};
+
+belongsToExpertPeopleByAgeRule sub rule
+when {
+ $p isa person has age >= 23;
+ $g isa group has name "Experto";
+}
+then {
+ (targetPerson:$p, targetGroup:$g) isa belongs_to;
+};
+
+belongsToExpertPeopleByTitleRule sub rule
+when {
+ $p isa person has title "Universitario";
+ $g isa group has name "Experto";
+}
+then {
+ (targetPerson:$p, targetGroup:$g) isa belongs_to;
+};
+
+easyPuzzleRule sub rule
+when {
+ $p isa puzzle has parts <= 50;
+ $d isa difficulty has name "Fácil";
+}
+then {
+ (targetPuzzle:$p, targetDifficulty:$d) isa puzzle_is;
+};
+
+mediumPuzzleRule sub rule
+when {
+ $p isa puzzle has parts > 50, has parts <= 200;
+ $d isa difficulty has name "Medio";
+}
+then {
+ (targetPuzzle:$p, targetDifficulty:$d) isa puzzle_is;
+};
+
+hardPuzzleRule sub rule
+when {
+ $p isa puzzle has parts > 200;
+ $d isa difficulty has name "Difícil";
+}
+then {
+ (targetPuzzle:$p, targetDifficulty:$d) isa puzzle_is;
+};
+
+beginnerGroupDoesEasyPuzzlesRule sub rule
+when {
+ $g isa group has name "Principiante";
+ (targetPuzzle:$p, targetDifficulty:$d) isa puzzle_is; $d has name "Fácil";
+}
+then {
+ (targetGroup:$g, targetPuzzle:$p) isa group_does;
+};
+
+intermediateGroupDoesEasyPuzzlesRule sub rule
+when {
+ $g isa group has name "Intermedio";
+ (targetPuzzle:$p, targetDifficulty:$d) isa puzzle_is; $d has name "Medio";
+}
+then {
+ (targetGroup:$g, targetPuzzle:$p) isa group_does;
+};
+
+hardGroupDoesEasyPuzzlesRule sub rule
+when {
+ $g isa group has name "Experto";
+ (targetPuzzle:$p, targetDifficulty:$d) isa puzzle_is; $d has name "Difícil";
+}
+then {
+ (targetGroup:$g, targetPuzzle:$p) isa group_does;
+};
+
+personDoesPuzzleRule sub rule
+when {
+ (targetPerson:$p, targetGroup:$g) isa belongs_to;
+ (targetGroup:$g, targetPuzzle:$pp) isa group_does;
+}
+then {
+ (targetPerson:$p, targetPuzzle:$pp) isa person_does;
+};
+
+# Obtener personas por grupo
+# match (targetPerson:$p, targetGroup:$g) isa belongs_to; $g has name "Principiante"; $p has name $n; get $n;
+# match (targetPerson:$p, targetGroup:$g) isa belongs_to; $g has name "Intermedio"; $p has name $n; get $n;
+# match (targetPerson:$p, targetGroup:$g) isa belongs_to; $g has name "Experto"; $p has name $n; get $n;
+
+# Restricciones
+# • El grupo de principantes pueden hacer puzzles fáciles.
+# • El grupo de intermedios pueden hacer puzzles medios.
+# • El grupo de expertos pueden hacer puzzles difíciles.
+
+# Preguntas que debe contestar:
+# 1) ¿Qué puzzles puede realizar el grupo X?
+# 2) ¿Qué puzzles puede realizar una persona X?
+# 3) ¿Qué grupo puede realizar una puzzle X?
+
+# 1)
+# match (targetGroup:$g,targetPuzzle:$a) isa group_does; $g has name "Principiante"; $a has name $na; get $na;
+# match (targetGroup:$g,targetPuzzle:$a) isa group_does; $g has name "Intermedio"; $a has name $na; get $na;
+# match (targetGroup:$g,targetPuzzle:$a) isa group_does; $g has name "Experto"; $a has name $na; get $na;
+
+# 2)
+# match (targetPerson:$p,targetPuzzle:$a) isa person_does; $p has name "Juan"; $a has name $na; get $na;
+
+# 3)
+# match (targetGroup:$g,targetPuzzle:$a) isa group_does; $g has name $ga; $a has name "Perros"; get $ga;
+# match (targetGroup:$g,targetPuzzle:$a) isa group_does; $g has name $ga; $a has name "Oceano"; get $ga;
+# match (targetGroup:$g,targetPuzzle:$a) isa group_does; $g has name $ga; $a has name "Retrato de persona"; get $ga;
