@@ -37,7 +37,7 @@ public class NNTraining {
         // Creamos un clasificador usando el algoritmo de backpropagation
         MultilayerPerceptron nn = new MultilayerPerceptron();
         nn.setAutoBuild(true);
-        nn.setHiddenLayers("20");
+        nn.setHiddenLayers("30");
         Classifier model = nn;
 
 
@@ -51,8 +51,8 @@ public class NNTraining {
         fc.buildClassifier(train);
 
         // Serializamos el modelo para usar en el tp de agentes
-        String location = "D:\\";
-        weka.core.SerializationHelper.write(location + "\\nn.model", fc);
+        String location = "target";
+        weka.core.SerializationHelper.write(location + "/nn.model", fc);
         ///////////////////////////////////////////////////////
 
         // Imprimimos los resultados sobre la misma data (para calcular error de entrenamiento)
